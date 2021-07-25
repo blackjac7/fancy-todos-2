@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:3000/";
+// const baseUrl = "http://localhost:3000/";
+const baseUrl = "https://fancy-todos-2.herokuapp.com/";
 let idEdit;
 
 function formatDateCE(date){
