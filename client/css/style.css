@@ -1,0 +1,15 @@
+#btnRegister {
+  float: right;
+}
+
+#btnLogin {
+  float: right;
+}
+
+.card {
+  margin: 20px;
+}
+
+.center {
+  text-align: center;
+}

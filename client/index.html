@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Meta Google Signin Client ID -->
+  <meta name="google-signin-client_id" content="412521918230-hikspff1v6nsuv6ips5lk0ife0917ut8.apps.googleusercontent.com">
+  
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+  <!-- My style -->
+  <link rel="stylesheet" href="./css/style.css">
+  
+  <title>Fancy Todo</title>
+</head>
+<body>
+  <nav id="navbarPage" class="navbar bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light btn btn-secondary" id="btn-finished-todos" href="#">Finished</a>
+      <a class="navbar-brand text-light btn btn-success" id="btn-mytodos" href="#">My Todos</a>
+      <a id="logoutNav" href="#"><button class="btn btn-danger">Logout</button></a>
+    </div>
+  </nav>
+  <main>
+
+    <!-- Register -->
+    <div id="registerPage"> 
+      <div class="row mt-4 justify-content-center">  
+          <div class="col-3">
+              <div class="row">
+                  <div class="col">
+                      <h1 class="mt-4">Register Here</h1>
+                  </div>
+              </div>
+              <div class="row mt-4">
+                  <div class="col">
+                      <form id="formRegister" >
+                          <div class="mb-3">
+                              <label for="name" class="form-label">Name</label>
+                              <input type="name" class="form-control" id="regName" autocomplete="off" name="name">
+                          </div>
+                          <div class="mb-3">
+                              <label for="email" class="form-label">Email</label>
+                              <input type="email" class="form-control" id="regEmail" autocomplete="off">
+                          </div>
+                          <div class="mb-3">
+                              <label for="password" class="form-label">Password</label>
+                              <input type="password" class="form-control" id="regPassword" autocomplete="off">
+                          </div>
+                          <button type="submit" class="btn btn-primary">Register</button>
+                          <button type="button" id="btnLogin" class="btn btn-outline-primary">Login</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Login -->
+    <div id="loginPage">
+      <div class="row mt-4 justify-content-center">  
+          <div class="col-3">
+              <div class="row">
+                  <div class="col">
+                      <h2 class="mt-4">Login to create your todos</h2>
+                  </div>
+              </div>
+              <div class="row mt-4">
+                  <div class="col">
+                      <form id="formLogin">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="logEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="logPassword">
+                        </div>
+                        <div class="mb-3">
+                          <button type="submit" class="btn btn-primary">Login</button>
+                          <button type="button" id="btnRegister" class="btn btn-outline-primary">Register</button>
+                        </div>
+                        <div style="width: auto;" class="g-signin2" data-onsuccess="onSignIn"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- My Todos -->
+    <div id="myTodosPage">
+      <div class="container">
+          <div class="row text-center">
+              <div class="col">
+                <h2 class="mt-4 center">Welcome to Fancy Todo</h2>
+                <p id="yourName" class="mb-5 center">What do you want to do?</p>
+              </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col text-center">
+                <button type="button" id="btn-add-todo" class="btn btn-outline-primary">Add New Todo</button>
+            </div>
+          </div> 
+          <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center card-container" id="myTodoList">
+            
+          </div>
+      </div>
+    </div>
+
+    <!-- My Finished Todos -->
+    <div id="myFinishedTodosPage">
+      <div class="container">
+          <div class="row text-center">
+              <div class="col">
+                <h2 class="mt-4 center">Finished Todo</h2>
+                <p class="mb-5 center">Don't look past</p>
+              </div>
+          </div>
+          <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center card-container" id="myFinishedTodo">
+            
+          </div>
+      </div>
+    </div>
+
+    <!-- Create Todo -->
+    <div class="row" id="addTodoPage">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <h3 class="text-justify" style="margin-top: 10px; margin-bottom: 30px;">Add Todo</h3>
+        <form class="row g-2" id="formAddTodo">
+          <div>
+            Title <input type="text" class="form-control" id="addTodoTitle"/>
+          </div>
+          <div>
+            Description <input type="text" class="form-control" id="addTodoDesc"/>
+          </div>
+          <div>
+            Due Date <input type="date" class="form-control" id="addTodoDueDate"/>
+          </div>
+          <div class="col-6">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary mb-2" id="submit-add-todo">Add Todo</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-4"></div>
+    </div>
+
+    <!-- Edit Todo -->
+    <div class="row" id="editTodoPage">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <h3 class="text-justify" style="margin-top: 10px; margin-bottom: 30px;">Edit Todo</h3>
+        <form class="row g-2" id="formEditTodo">
+          <div>
+            <input type="text" class="form-control" id="editTodoTitle" placeholder="Title"/>
+          </div>
+          <div>
+            <input type="text" class="form-control" id="editTodoDesc" placeholder="Description"/>
+          </div>
+          <div>
+            <input type="date" class="form-control" id="editTodoDueDate"/>
+          </div>
+          <div class="col-6">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary mb-2" id="submit-edit-todo">Edit Todo</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-4"></div>
+    </div>
+
+  </main>
+
+  <!-- Google Sign-In library -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  
+  <!-- Bootstrap js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!-- my script -->
+  <script src="./script/function.js"></script>
+  <script src="./script/main.js"></script>
+
+</body>
+</html>
