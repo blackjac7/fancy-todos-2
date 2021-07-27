@@ -121,6 +121,7 @@ function showEditTodo(){
 function login(){
   const email = $("#logEmail").val();
   const password = $("#logPassword").val();
+  $("#error-login").empty();
 
   $.ajax({
     method: "POST",
@@ -135,6 +136,7 @@ function login(){
     auth();
   })
   .fail((xhr, textStatus) => {
+    $("#error-login").append(`<p> ${xhr.responseJSON.message} </p>`)
     console.log(xhr, textStatus);
   })
   .always(_ => {
@@ -159,6 +161,7 @@ function register(){
   const name = $("#regName").val();
   const email = $("#regEmail").val();
   const password = $("#regPassword").val();
+  $("#error-register").empty();
 
   $.ajax({
     method: "POST",
@@ -174,6 +177,9 @@ function register(){
     auth();
   })
   .fail((xhr, textStatus) => {
+    xhr.responseJSON.forEach(el => {
+      $("#error-register").append(`<p> ${el} </p>`)
+    })
     console.log(xhr, textStatus);
   })
   .always(_ => {

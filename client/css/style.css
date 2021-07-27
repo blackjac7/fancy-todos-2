@@ -13,3 +13,7 @@
 .center {
   text-align: center;
 }
+
+.error-message {
+  color: brown;
+}
